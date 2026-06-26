@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Tasmiyah - Nayla Ramadhania</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #ffb6c1; 
+            --text-dark: #333;
+            --bg-color: #fff0f5; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); color: var(--text-dark); overflow-x: hidden; }
+
+        /* Cover */
+        #cover {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+            background: linear-gradient(rgba(255, 240, 245, 0.9), rgba(255, 240, 245, 0.9)), url('https://www.transparenttextures.com/patterns/stardust.png');
+            background-color: #ffc0cb; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; text-align: center; padding: 20px; transition: top 1s ease-in-out;
+        }
+        .cover-title { font-family: 'Great Vibes', cursive; font-size: 3rem; color: #d1495b; margin-bottom: 10px; }
+        .guest-box { background: white; padding: 20px 30px; border-radius: 15px; border: 2px solid var(--primary-color); margin: 20px 0; }
+        .btn-open { background-color: #d1495b; color: white; padding: 10px 30px; border: none; border-radius: 25px; font-size: 1rem; cursor: pointer; }
+
+        /* Main Content */
+        #main-content { display: none; max-width: 600px; margin: 0 auto; background: white; min-height: 100vh; padding-bottom: 50px; text-align: center; }
+        .section { padding: 30px 20px; }
+        .bismillah { font-size: 1.2rem; font-weight: 600; margin-bottom: 15px; }
+        .child-name { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: #d1495b; margin: 10px 0; }
+        .divider { width: 80%; height: 2px; background: var(--primary-color); margin: 20px auto; }
+        
+        .details-box { background: var(--bg-color); padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid var(--primary-color); }
+        .btn-map { display: inline-block; background-color: #556b2f; color: white; padding: 10px 25px; text-decoration: none; border-radius: 20px; margin-top: 15px; font-size: 0.9rem; }
+        
+        /* Countdown */
+        .countdown-container { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
+        .time-box { background: var(--primary-color); color: white; padding: 10px; border-radius: 8px; min-width: 65px; }
+        .time-box span { display: block; font-size: 1.5rem; font-weight: bold; }
+
+        /* RSVP Form */
+        .rsvp-box { background: white; padding: 20px; border-radius: 10px; margin: 20px 0; border: 2px solid var(--primary-color); text-align: left; }
+        .rsvp-box h3 { text-align: center; color: #d1495b; margin-bottom: 15px; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 0.9rem; margin-bottom: 5px; font-weight: 600; }
+        .form-control { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-family: 'Poppins', sans-serif; }
+        .btn-submit { width: 100%; background-color: #d1495b; color: white; padding: 12px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .btn-submit:disabled { background-color: #ccc; }
+
+        /* Live Comments Section */
+        .comments-section { background: var(--bg-color); padding: 20px; border-radius: 10px; text-align: left; margin-top: 20px; max-height: 400px; overflow-y: auto; border: 1px solid var(--primary-color); }
+        .comment-item { background: white; padding: 15px; border-radius: 8px; margin-bottom: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .comment-name { font-weight: bold; color: #d1495b; font-size: 0.95rem; }
+        .badge-hadir { font-size: 0.7rem; background: #25D366; color: white; padding: 2px 6px; border-radius: 10px; margin-left: 5px; }
+        .badge-absen { font-size: 0.7rem; background: #999; color: white; padding: 2px 6px; border-radius: 10px; margin-left: 5px; }
+        .comment-text { font-size: 0.85rem; margin-top: 5px; color: #555; }
+        
+        .loading-text { text-align: center; font-size: 0.9rem; color: #888; }
+    </style>
+</head>
+<body>
+
+    <!-- Cover -->
+    <div id="cover">
+        <p>Undangan Tasmiyah</p>
+        <h1 class="cover-title">Nayla Ramadhania</h1>
+        <p>Sabtu, 27 Juni 2026</p>
+        <div class="guest-box">
+            <p style="font-size: 0.9rem;">Kepada Yth:</p>
+            <h2 id="guest-name" style="margin: 10px 0; color: #d1495b;">Tamu Undangan</h2>
+        </div>
+        <button class="btn-open" onclick="openInvitation()">Buka Undangan 💌</button>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <div class="section">
+            <p class="bismillah">Assalamu'alaikum Warahmatullahi Wabarakatuh</p>
+            <p style="font-size: 0.9rem;">Dengan memohon ridho & rahmat Allah SWT, kami bermaksud menyelenggarakan Acara Tasmiyah anak kami :</p>
+            
+            <h1 class="child-name">Nayla Ramadhania</h1>
+            <p style="font-weight: 600;">Anak Ke-3 dari<br>Harbiansyah & Maulida Noor Hidayah</p>
+            <div class="divider"></div>
+
+            <div class="details-box">
+                <h3>SABTU, 27 JUNI 2026</h3>
+                <p>Pukul : 09.00 s/d 14.00 Wita</p>
+            </div>
+
+            <!-- Countdown -->
+            <div class="countdown-container">
+                <div class="time-box"><span id="days">00</span><small>Hari</small></div>
+                <div class="time-box"><span id="hours">00</span><small>Jam</small></div>
+                <div class="time-box"><span id="minutes">00</span><small>Menit</small></div>
+                <div class="time-box"><span id="seconds">00</span><small>Detik</small></div>
+            </div>
+
+            <div class="details-box">
+                <p style="font-weight: bold;">Lokasi Acara</p>
+                <p style="font-size: 0.9rem;">Jl. Hasbullah Hasyari RT 005 Desa Kota Bangun Ilir<br>Kec. Kota Bangun</p>
+                <a href="https://maps.app.goo.gl/BLPNnPC5y258i69q6?g_st=ac" target="_blank" class="btn-map">📍 Buka Peta</a>
+            </div>
+
+            <!-- Form RSVP LIVE (Tanpa Jumlah Orang) -->
+            <div class="rsvp-box">
+                <h3>RSVP & Ucapan</h3>
+                <form id="rsvpForm" name="rsvp-form">
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" name="Nama" id="rsvp-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Kehadiran</label>
+                        <select name="Kehadiran" class="form-control">
+                            <option value="Hadir">Hadir</option>
+                            <option value="Tidak Hadir">Tidak Hadir</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Ucapan / Doa</label>
+                        <textarea name="Ucapan" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" id="btnSubmit" class="btn-submit">Kirim Ucapan & Konfirmasi</button>
+                </form>
+            </div>
+
+            <!-- LIVE COMMENTS MUNCUL DI SINI -->
+            <h3 style="margin-top: 30px; color: #d1495b;">Ucapan & Doa</h3>
+            <div class="comments-section" id="comments-container">
+                <p class="loading-text" id="loading-msg">Memuat ucapan...</p>
+                <!-- Data akan disisipkan ke sini oleh JavaScript -->
+            </div>
+
+            <div class="divider"></div>
+            <p class="bismillah" style="margin-top: 20px;">Wassalamu'alaikum Warahmatullahi Wabarakatuh</p>
+            
+            <div style="font-size: 0.85rem; margin-top: 20px; line-height: 1.6;">
+                <p><strong>Turut Mengundang :</strong></p>
+                <p>H. Hairuddin / H. Uting & Titin Sumarni (Almh)</p>
+                <p>Asmola / Olel & Masruni (Almh)</p>
+                <p>Seluruh Keluarga</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT -->
+    <script>
+        // --- 1. GANTI LINK INI DENGAN URL APP SCRIPT KAMU ---
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwiLhN8d0_ojh60zJO9g6emlQF2uqkcyjHUyWUP733OaKGVgD99swvlteGFAqu-FoVv/exec';
+        // ----------------------------------------------------
+
+        // URL Params (Nama Tamu)
+        const urlParams = new URLSearchParams(window.location.search);
+        let guestName = urlParams.get('to');
+        if (guestName) {
+            guestName = guestName.replace(/\+/g, ' ').replace(/_/g, ' ');
+            document.getElementById('guest-name').innerText = guestName;
+            document.getElementById('rsvp-name').value = guestName;
+        }
+
+        // Animasi Buka Cover
+        function openInvitation() {
+            document.getElementById('cover').style.top = '-100vh';
+            document.getElementById('main-content').style.display = 'block';
+            document.body.style.overflowY = 'auto';
+            loadComments(); // Load data saat undangan dibuka
+        }
+        document.body.style.overflowY = 'hidden';
+
+        // Countdown Timer
+        const countDownDate = new Date("Jun 27, 2026 09:00:00").getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            document.getElementById("hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            document.getElementById("seconds").innerHTML = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
+        }, 1000);
+
+        // FORM SUBMIT KE GOOGLE SHEETS
+        const form = document.forms['rsvp-form'];
+        const btnSubmit = document.getElementById('btnSubmit');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            btnSubmit.disabled = true;
+            btnSubmit.innerText = 'Mengirim...';
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                alert('Terima kasih! RSVP dan Ucapan berhasil dikirim.');
+                form.reset();
+                btnSubmit.disabled = false;
+                btnSubmit.innerText = 'Kirim Ucapan & Konfirmasi';
+                loadComments(); // Refresh daftar komentar otomatis
+            })
+            .catch(error => {
+                alert('Terjadi kesalahan, coba lagi nanti.');
+                btnSubmit.disabled = false;
+                btnSubmit.innerText = 'Kirim Ucapan & Konfirmasi';
+            });
+        });
+
+        // TARIK DATA DARI GOOGLE SHEETS UNTUK LIVE COMMENTS
+        function loadComments() {
+            const container = document.getElementById('comments-container');
+            const loadingMsg = document.getElementById('loading-msg');
+            
+            fetch(scriptURL)
+            .then(res => res.json())
+            .then(data => {
+                container.innerHTML = ''; // Kosongkan container
+                if(data.length === 0) {
+                    container.innerHTML = '<p class="loading-text">Belum ada ucapan. Jadilah yang pertama!</p>';
+                    return;
+                }
+
+                // Supaya yang terbaru ada di atas
+                data.reverse().forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'comment-item';
+                    
+                    const badgeClass = item.Kehadiran === 'Hadir' ? 'badge-hadir' : 'badge-absen';
+                    const iconCheck = item.Kehadiran === 'Hadir' ? '✓' : '✗';
+
+                    // Backup jika teks kosong atau "undefined" (karena App Script belum terupdate)
+                    const ucapanTeks = (item.Ucapan && item.Ucapan !== "undefined") ? item.Ucapan : (item.Jumlah ? item.Jumlah : '');
+
+                    div.innerHTML = `
+                        <div class="comment-name">
+                            ${item.Nama} 
+                            <span class="${badgeClass}">${iconCheck} ${item.Kehadiran}</span>
+                        </div>
+                        <div class="comment-text">"${ucapanTeks}"</div>
+                    `;
+                    container.appendChild(div);
+                });
+            })
+            .catch(err => {
+                loadingMsg.innerText = "Gagal memuat ucapan.";
+            });
+        }
+    </script>
+</body>
+</html>
